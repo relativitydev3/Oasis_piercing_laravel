@@ -1,7 +1,5 @@
-# Oasis_piercing_laravel
 # Oasis Piercing - Laravel  
 
-![Oasis Piercing](https://tu-imagen-aqui.com/banner.jpg)  
 
 ## 📌 Índice  
 - [Español](#español)  

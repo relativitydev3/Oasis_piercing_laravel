@@ -1,0 +1,18 @@
+.color-table{
+    background-color: #343a40
+    ;
+}
+.color-table > th{
+    background-color: #343a40
+    ;
+}
+.color-table > td{
+    background-color: #343a40
+    ;
+}
+.card-bg-color{
+    background-color: #343a40 !important;
+    color: white;
+    width: 100%;
+ 
+}

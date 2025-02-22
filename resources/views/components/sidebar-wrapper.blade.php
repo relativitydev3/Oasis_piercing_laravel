@@ -4,10 +4,10 @@
       -->
   <div class="sidebar-wrapper">
     <div class="logo">
-      <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+      <a href="" class="simple-text logo-mini">
         <img src="{{('assets/img/oasis.enc')}}" alt="">
       </a>
-      <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+      <a href="" class="simple-text logo-normal">
         {{ Auth::user()->name  }}
 
       </a>
@@ -17,6 +17,14 @@
         <a href="{{ route('categories.index') }}">
           <i class="tim-icons icon-chart-pie-36"></i>
           <p>Dashboard</p>
+        </a>
+      </li>
+      <li class=" {{Route::currentRouteName()=='sales.index' ? 'active' : '' }}">
+
+        <a href="{{ route('sales.index') }}">
+          <i class="tim-icons icon-puzzle-10"></i>
+          <p>sales</p>
+
         </a>
       </li>
       <li class=" {{Route::currentRouteName()=='categories.index' ? 'active' : '' }}">

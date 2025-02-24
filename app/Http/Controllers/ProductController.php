@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Category;
+use App\Models\SalesStatus;
+use App\Models\Material;
 
 class ProductController extends Controller
 {
@@ -31,9 +33,13 @@ class ProductController extends Controller
     public function create(): View
     {
         $product = new Product();
-        $categories = Category::all(); // Obtener todas las categorías
-        return view('product.create', compact('product', 'categories'));
+        $categories = Category::all();
+        $statuses = SalesStatus::all();
+        $materials = Material::all();
+    // Depuración
+        return view('product.create', compact('product', 'categories', 'statuses', 'materials'));
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -46,13 +52,15 @@ class ProductController extends Controller
             $imagePath = $request->file('imagen')->store('products', 'public');
             $validated['imagen'] = $imagePath;
         }
-        // Product::create($validated);
 
+        // Convertir estado_id a número
+        $validated['estado_id'] = intval($validated['estado_id']);
         $product = Product::create($validated);
 
-        // Sincronizar las categorías seleccionadas
+
+        // Sincronizar categorías seleccionadas
         if ($request->has('categories')) {
-            $product->Category()->sync($request->categories);
+            $product->categories()->sync($request->categories);
         }
 
         return Redirect::route('products.index')
@@ -66,7 +74,8 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $categories = Category::all(); // Obtener todas las categorías
-        return view('product.edit', compact('product', 'categories'));
+        $statuses = SalesStatus::all(); // Obtener todos los estados de producto
+        return view('product.show', compact('product', 'categories', 'statuses'));
     }
 
     /**
@@ -76,7 +85,10 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $categories = Category::all(); // Obtener todas las categorías
-        return view('product.edit', compact('product', 'categories'));
+        $statuses = SalesStatus::all(); // Obtener todos los estados de producto
+        $materials = Material::all();
+
+        return view('product.edit', compact('product', 'categories', 'statuses', 'materials'));
     }
 
     /**
@@ -100,15 +112,20 @@ class ProductController extends Controller
             $data['imagen'] = $imagenPath;
         }
 
+
         // Actualizar el producto con los datos (manteniendo la imagen si no se subió una nueva)
         $product->update($data);
+
+        
         // $product->update($request->validated());
-
-
-        // Sincronizar las categorías seleccionadas
+        // Sincronizar categorías seleccionadas
         if ($request->has('categories')) {
-            $product->Category()->sync($request->categories);
+            $product->categories()->sync($request->categories);
+        } else {
+            $product->categories()->sync([]); // Si no se selecciona ninguna, se limpia la relación
         }
+
+     
 
         return Redirect::route('products.index')
             ->with('success', 'Product updated successfully');

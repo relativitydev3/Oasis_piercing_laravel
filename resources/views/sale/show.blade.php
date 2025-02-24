@@ -49,44 +49,47 @@
                         {{ $sale->Correo_Cliente }}
                     </div>
                     <div class="form-group mb-2 mb20">
-                        <strong>User Id:</strong>
-                        {{ $sale->user_id }}
+                        <strong>Usuario:</strong>
+                        {{ $sale->user->name }} {{ $sale->user->last_name }}
                     </div>
+
                     <div class="form-group mb-2 mb20">
                         <strong>Estado:</strong>
-                        {{ $sale->estado }}
+                        {{ $sale->status->name }}
                     </div>
 
                 </div>
 
                 @if ($sale->details->isNotEmpty())
-    <div class="card-body">
-        <h4>Detalles de la Venta</h4>
-        <table class="table ">
-            <thead>
-                <tr class="color-table">
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Precio Unitario</th>
-                    <th>Subtotal</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($sale->details as $detail)
-                <tr class="color-table">
-                    <td>{{ $detail->product_id ?? 'Sin nombre' }}</td>
-                    <td>{{ $detail->cantidad }}</td>
-                    <td>{{ number_format($detail->precio, 2) }}</td>
-                    <td>{{ number_format($detail->sub_total, 2) }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <h4 class="text-end">Total: <strong>{{ number_format($sale->details->sum('total'), 2) }}</strong></h4>
-    </div>
-@else
-    <p class="text-center text-muted">No hay detalles de venta disponibles.</p>
-@endif
+                <div class="card-body">
+                    <h4>Detalles de la Venta</h4>
+                    <table class="table ">
+                        <thead>
+                            <tr class="color-table">
+                                <th>Producto</th>
+                                <!-- <th>Producto</th> -->
+                                <th>Cantidad</th>
+                                <th>Precio Unitario</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($sale->details as $detail)
+                            <tr class="color-table">
+                                <td> {{ $detail->product->nombre }} </td>
+                                <!-- <td>{{ $detail->product_id ?? 'Sin nombre' }}</td> -->
+                                <td>{{ $detail->cantidad }}</td>
+                                <td>{{ number_format($detail->precio, 2) }}</td>
+                                <td>{{ number_format($detail->sub_total, 2) }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <h4 class="text-end">Total: <strong>{{ number_format($sale->details->sum('total'), 2) }}</strong></h4>
+                </div>
+                @else
+                <p class="text-center text-muted">No hay detalles de venta disponibles.</p>
+                @endif
 
 
             </div>

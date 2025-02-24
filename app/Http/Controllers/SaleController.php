@@ -37,7 +37,10 @@ class SaleController extends Controller
         ->where('sale_id', $sale->id)
         ->pluck('cantidad', 'product_id')
         ->toArray();
-        return view('sale.create', compact('sale', 'users', 'products', 'saleDetails'));
+
+        $salesStatuses = DB::table('sales_status')->pluck('name', 'id');
+
+        return view('sale.create', compact('sale', 'users', 'products', 'saleDetails', 'salesStatuses'));
     }
 
 
@@ -105,8 +108,7 @@ class SaleController extends Controller
      */
     public function show($id): View
     {
-        $sale = Sale::with(['details'])->findOrFail($id);
-        // var_dump($sale);exit;
+        $sale = Sale::with(['details.product', 'user', 'status'])->findOrFail($id);
         return view('sale.show', compact('sale'));
     }
     
@@ -125,7 +127,9 @@ class SaleController extends Controller
             ->pluck('cantidad', 'product_id')
             ->toArray();
 
-        return view('sale.edit', compact('sale', 'users', 'products', 'saleDetails'));
+        $salesStatuses = DB::table('sales_status')->pluck('name', 'id');
+
+        return view('sale.edit', compact('sale', 'users', 'products', 'saleDetails', 'salesStatuses'));
     }
 
     /**

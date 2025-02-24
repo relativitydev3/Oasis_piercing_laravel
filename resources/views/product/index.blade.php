@@ -68,19 +68,19 @@ Products
 
 
                                     <td>{{ $product->nombre }}</td>
-                                    <td>{{ $product->material }}</td>
+                                    <td>{{ $product->material->nombre }}</td>
                                     <td>{{ $product->precio }}</td>
                                     <td>{{ $product->stock }}</td>
                                     <!-- <td>{{ $product->imagen }}</td> -->
                                     <td>{{ $product->descripcion }}</td>
-                                    <td>{{ $product->estado }}</td>
+                                    <td>{{ $product->status->name }}</td>
                                     <td>
                                         @if($product->categories->isNotEmpty())
                                         @foreach($product->categories as $category)
                                         <span class="badge bg-primary">{{ $category->nombre }}</span>
                                         @endforeach
                                         @else
-                                        <span class="text-muted">Sin categoría</span>
+                                        <span class="">Sin categoría</span>
                                         @endif
                                     </td>
 

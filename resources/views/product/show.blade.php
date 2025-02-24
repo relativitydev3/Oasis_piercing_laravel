@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Estado:</strong>
-                                    {{ $product->estado }}
+                                    {{ $product->status->name }}
                                 </div>
 
                     </div>

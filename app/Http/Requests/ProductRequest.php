@@ -23,15 +23,15 @@ class ProductRequest extends FormRequest
     {
         return [
 			'nombre' => 'required|string',
-			'material' => 'required|string',
+            'material_id' => 'nullable|exists:materials,id',
 			'precio' => 'required|string',
 			'stock' => 'required',
 			// 'imagen' => 'required|string',
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-			'descripcion' => 'required|string',
-			'estado' => 'required|string',
-            'categories' => 'array', // Agregar esta regla
-            'categories.*' => 'exists:categories,id' // Validar que cada categoría exista
+			'descripcion' => 'nullable|string',
+            'estado_id' => 'required',
+            'categories' => 'required|array',
+          
     
 
         ];

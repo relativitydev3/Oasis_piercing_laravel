@@ -1,8 +1,8 @@
 <div class="row g-3">
     <div class="col-md-12">
         <div class="form-group mb-3">
-            <label for="nombre" class="form-label fw-bold">{{ __('Nombre') }}</label>
-            <input type="text" name="nombre" class="form-control @error('nombre') is-invalid @enderror" value="{{ old('nombre', $category?->nombre) }}" id="nombre" placeholder="Nombre">
+            <label for="nombre" class="form-label fw-bold">{{ __('Nombre') }}<span class="text-danger">*</span></label>
+            <input type="text" name="nombre" class="form-control @error('nombre') is-invalid @enderror" value="{{ old('nombre', $category?->nombre) }}" id="nombre" placeholder="Nombre" required>
             {!! $errors->first('nombre', '<div class="invalid-feedback"><strong>:message</strong></div>') !!}
         </div>
 
@@ -13,8 +13,8 @@
         </div>
 
         <div class="form-group mb-3">
-            <label for="estado" class="form-label fw-bold">{{ __('Estado') }}</label>
-            <select name="estado" class="form-select @error('estado') is-invalid @enderror">
+            <label for="estado" class="form-label fw-bold">{{ __('Estado') }}<span class="text-danger">*</span></label>
+            <select name="estado" class="form-select @error('estado') is-invalid @enderror" required>
                 <option value="Activo" {{ old('estado', $category?->estado) == 'Activo' ? 'selected' : '' }}>Activo</option>
                 <option value="Inactivo" {{ old('estado', $category?->estado) == 'Inactivo' ? 'selected' : '' }}>Inactivo</option>
             </select>

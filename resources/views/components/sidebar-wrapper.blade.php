@@ -27,11 +27,11 @@
 
         </a>
       </li>
-      <li class=" {{Route::currentRouteName()=='categories.index' ? 'active' : '' }}">
+      <li class=" {{Route::currentRouteName()=='sales-statuses.index' ? 'active' : '' }}">
 
-        <a href="{{ route('categories.index') }}">
+        <a href="{{ route('sales-statuses.index')}}">
           <i class="tim-icons icon-puzzle-10"></i>
-          <p>Category</p>
+          <p>sales statuses</p>
 
         </a>
       </li>
@@ -40,6 +40,33 @@
         <a href="{{ route('products.index')}}">
           <i class="tim-icons icon-puzzle-10"></i>
           <p>products</p>
+
+        </a>
+      </li>
+      <li class=" {{Route::currentRouteName()=='product-statuses.index' ? 'active' : '' }}">
+
+        <a href="{{ route('product-statuses.index')}}">
+          <i class="tim-icons icon-puzzle-10"></i>
+          <p>product statuses</p>
+
+        </a>
+      </li> 
+      <li class=" {{Route::currentRouteName()=='categories.index' ? 'active' : '' }}">
+
+        <a href="{{ route('categories.index') }}">
+          <i class="tim-icons icon-puzzle-10"></i>
+          <p>Category</p>
+
+        </a>
+      </li>
+
+
+
+      <li class=" {{Route::currentRouteName()=='materials.index' ? 'active' : '' }}">
+
+        <a href="{{ route('materials.index')}}">
+          <i class="tim-icons icon-puzzle-10"></i>
+          <p>materials</p>
 
         </a>
       </li>

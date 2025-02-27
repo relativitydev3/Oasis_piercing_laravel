@@ -6,10 +6,8 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/sass/app.scss',
-                'resources/css/login.css', 
                 'resources/js/app.js',
-                'resources/css/app.js',
-                'public/js/assets/black-dashboard.css',
+                'resources/css/app.css',
 
             ],
             refresh: true,

@@ -55,7 +55,7 @@
     @include('components.sidebar-wrapper')
   </div>
   <div style="flex: 1;">
-    <div class="row">
+    <div class="">
       <main class="py-4">
         @yield('content')
       </main>

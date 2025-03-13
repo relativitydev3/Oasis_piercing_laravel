@@ -50,7 +50,7 @@ Products
                             </thead>
                             <tbody>
                                 @foreach ($products as $product)
-                                <tr class="color-table">
+                                <tr class="">
                                     <td>{{ ++$i }}</td>
 
                                     <td class="text-center">

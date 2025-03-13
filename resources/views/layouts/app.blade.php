@@ -36,29 +36,36 @@
 
 
   <!-- Scripts -->
-  @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
+  @vite([ 'resources/js/app.js'])
+  <!-- 'resources/sass/app.scss', -->
   @yield('styles')
-  <link href="{{ asset('css/table.css')}}" rel="stylesheet" />
   <!-- <title>@yield('title')</title> -->
 
 </head>
 
-<body class="main-panel">
+<body class="">
 
 
-  @include('components.sidebar-wrapper')
-  <div class="main-panel">
+  <div id="app">
+
     @include('components.navbar')
+    <div class="main-panel">
+    <div style="display: flex;">
+  <div style="width: 260px;">
+    @include('components.sidebar-wrapper')
+  </div>
+  <div style="flex: 1;">
+    <div class="row">
+      <main class="py-4">
+        @yield('content')
+      </main>
+    </div>
+  </div>
+</div>
 
 
 
-    <div class="content">
-      <div id="app">
-        <main class="py-4">
-          @yield('content')
-        </main>
-      </div>
+
     </div>
   </div>
 
@@ -67,6 +74,8 @@
 <script src="{{ asset('assets/js/core/jquery.min.js')}}"></script>
 <script src="{{ asset('assets/js/core/popper.min.js')}}"></script>
 <script src="{{ asset('assets/js/core/bootstrap.min.js')}}"></script>
+<script src="{{ asset('/assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
+
 <!--  Google Maps Plugin    -->
 <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Chart JS -->

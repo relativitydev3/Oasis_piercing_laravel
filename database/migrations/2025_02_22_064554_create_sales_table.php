@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('Departamento_Cliente')->nullable();
             $table->string('Telefono_Cliente')->nullable();
             $table->string('Correo_Cliente')->nullable();
+
+            $table->string('Documento_Cliente')->nullable();
+            
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Clave foránea
             $table->string('estado');
 

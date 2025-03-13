@@ -8,7 +8,7 @@ Products
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
-            <div class="card color-table">
+            <div class="card ">
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
 
@@ -33,7 +33,7 @@ Products
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <thead class="thead ">
-                                <tr class="color-table">
+                                <tr class="">
                                     <th>No</th>
 
                                     <th>IMG</th>

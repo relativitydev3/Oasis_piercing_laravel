@@ -12,9 +12,9 @@
             {!! $errors->first('descripcion', '<div class="invalid-feedback"><strong>:message</strong></div>') !!}
         </div>
 
-        <div class="form-group mb-3">
+        <div class="form-group mb-3 ">
             <label for="estado" class="form-label fw-bold">{{ __('Estado') }}<span class="text-danger">*</span></label>
-            <select name="estado" class="form-select @error('estado') is-invalid @enderror" required>
+            <select style="background-color:#27293D;"  name="estado" class="form-control @error('estado') is-invalid @enderror" required>
                 <option value="Activo" {{ old('estado', $category?->estado) == 'Activo' ? 'selected' : '' }}>Activo</option>
                 <option value="Inactivo" {{ old('estado', $category?->estado) == 'Inactivo' ? 'selected' : '' }}>Inactivo</option>
             </select>

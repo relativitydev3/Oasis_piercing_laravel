@@ -9,7 +9,7 @@
     <section class=" container-fluid  ">
         <div class="row">
             <div class="col-md-12">
-                <div class="card  card-bg-color">
+                <div class="card   text-light">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
                             <span class="card-title">{{ __('Show') }} Product</span>
@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Material:</strong>
-                                    {{ $product->material }}
+                                    {{ $product->material->nombre }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Precio:</strong>

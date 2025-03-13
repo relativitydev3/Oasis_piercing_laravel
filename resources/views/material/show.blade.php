@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
-        <div class="row">
+    <section class=" container-fluid  text-light">
+        <div class="row ">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
@@ -18,7 +18,7 @@
                         </div>
                     </div>
 
-                    <div class="card-body bg-white">
+                    <div class="card-body">
                         
                                 <div class="form-group mb-2 mb20">
                                     <strong>Nombre:</strong>

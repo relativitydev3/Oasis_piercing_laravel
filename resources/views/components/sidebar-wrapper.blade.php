@@ -5,7 +5,7 @@
   <div class="sidebar-wrapper">
     <div class="logo">
       <a href="" class="simple-text logo-mini">
-        <img src="{{('assets/img/oasis.enc')}}" alt="">
+        <img src="{{('assets/img/anime3.png')}}" alt="">
       </a>
       <a href="" class="simple-text logo-normal">
         {{ Auth::user()->name  }}
@@ -19,15 +19,14 @@
           <p>Dashboard</p>
         </a>
       </li>
-      <li class=" {{Route::currentRouteName()=='sales.index' ? 'active' : '' }}">
+      <li class=" {{explode('.', Route::currentRouteName())[0]=='sales' ? 'active' : ''   }}">
 
         <a href="{{ route('sales.index') }}">
           <i class="tim-icons icon-puzzle-10"></i>
           <p>sales</p>
-
         </a>
       </li>
-      <li class=" {{Route::currentRouteName()=='sales-statuses.index' ? 'active' : '' }}">
+      <li   class=" {{explode('.', Route::currentRouteName())[0]=='sales-statuses' ? 'active' : ''   }}">
 
         <a href="{{ route('sales-statuses.index')}}">
           <i class="tim-icons icon-puzzle-10"></i>
@@ -35,7 +34,7 @@
 
         </a>
       </li>
-      <li class=" {{Route::currentRouteName()=='products.index' ? 'active' : '' }}">
+      <li class=" {{explode('.', Route::currentRouteName())[0]=='products' ? 'active' : ''   }}">
 
         <a href="{{ route('products.index')}}">
           <i class="tim-icons icon-puzzle-10"></i>
@@ -43,7 +42,7 @@
 
         </a>
       </li>
-      <li class=" {{Route::currentRouteName()=='product-statuses.index' ? 'active' : '' }}">
+      <li class=" {{explode('.', Route::currentRouteName())[0]=='product-statuses' ? 'active' : ''   }}">
 
         <a href="{{ route('product-statuses.index')}}">
           <i class="tim-icons icon-puzzle-10"></i>
@@ -51,7 +50,7 @@
 
         </a>
       </li> 
-      <li class=" {{Route::currentRouteName()=='categories.index' ? 'active' : '' }}">
+      <li class=" {{explode('.', Route::currentRouteName())[0]=='categories' ? 'active' : ''   }}">
 
         <a href="{{ route('categories.index') }}">
           <i class="tim-icons icon-puzzle-10"></i>
@@ -62,7 +61,7 @@
 
 
 
-      <li class=" {{Route::currentRouteName()=='materials.index' ? 'active' : '' }}">
+      <li class=" {{explode('.', Route::currentRouteName())[0]=='materials' ? 'active' : ''   }}">
 
         <a href="{{ route('materials.index')}}">
           <i class="tim-icons icon-puzzle-10"></i>
@@ -76,7 +75,7 @@
           <p>Notifications</p>
         </a>
       </li>
-      <li class=" {{Route::currentRouteName()=='user.index' ? 'active' : '' }}">
+      <li class=" {{explode('.', Route::currentRouteName())[0]=='user' ? 'active' : ''   }}">
 
         <a href="{{ route('user.index') }}">
           <i class="tim-icons icon-single-02"></i>

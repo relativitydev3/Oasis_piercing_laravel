@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $estado
  * @property $created_at
  * @property $updated_at
+ * @abstract $Documento_Cliente
  *
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
@@ -34,7 +35,7 @@ class Sale extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['Nombre_Cliente', 'Apellido_Cliente', 'Direccion_Cliente', 'Ciudad_Cliente', 'Departamento_Cliente', 'Telefono_Cliente', 'Correo_Cliente', 'user_id', 'estado'];
+    protected $fillable = ['Nombre_Cliente', 'Apellido_Cliente', 'Direccion_Cliente', 'Ciudad_Cliente', 'Departamento_Cliente', 'Telefono_Cliente', 'Correo_Cliente','Documento_Cliente', 'user_id', 'estado'];
 
  
     public function user()

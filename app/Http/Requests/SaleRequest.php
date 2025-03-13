@@ -32,6 +32,7 @@ class SaleRequest extends FormRequest
 			'user_id' => 'required',
 			'estado' => 'required|string',
             'productos' => 'required|array',
+            'Documento_Cliente' => 'required|string',
         ];
     }
 }

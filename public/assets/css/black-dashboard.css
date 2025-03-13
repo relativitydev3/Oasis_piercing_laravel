@@ -230,28 +230,31 @@ Copyright (c) 2015 Daniel Eden
 
 
 
+
 /* Estilo para el scrollbar completo */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-  background-color: #1a1a2e; /* Un fondo oscuro */
+  width: 80px;
+  height: 80px;
+  /* background-color: transparent; */
+  background-color: #f1f1f1;
+  display: none;
+
 }
 
 /* Estilo para el track (fondo) del scrollbar */
 ::-webkit-scrollbar-track {
-  background-color: #1a1a2e; /* Un fondo oscuro */
-  border-radius: 4px;
+  background-color: transparent;
 }
 
 /* Estilo para el thumb (barra deslizadora) del scrollbar */
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #6a0dad, #4b0082); /* Morado oscuro */
+  background-color: transparent;
   border-radius: 4px;
 }
 
 /* Estilo hover para el thumb */
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #8a2be2, #6a0dad); /* Un morado más vibrante */
+  background-color: rgba(0, 0, 0, 0.635);
 }
 
 
@@ -5115,11 +5118,8 @@ table.tablesorter thead tr .headerSortDown {
   }
   .nav-open .main-panel {
     right: 0;
-    -webkit-transform: translate3d(260px, 0, 0);
-    -moz-transform: translate3d(260px, 0, 0);
-    -o-transform: translate3d(260px, 0, 0);
-    -ms-transform: translate3d(260px, 0, 0);
-    transform: translate3d(260px, 0, 0);
+    transform: translate3d(20px, 0, 0); /* El main-panel se desplaza para dar cabida al sidebar */
+
   }
   .nav-open .sidebar {
     -webkit-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
@@ -5946,3 +5946,5 @@ table.tablesorter thead tr .headerSortDown {
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+

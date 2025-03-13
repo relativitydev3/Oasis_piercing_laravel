@@ -1,4 +1,4 @@
-<div class="row p-3">
+<div class="">
     <div class="col-md-6">
         <div class="form-group mb-3">
             <label for="name" class="form-label">{{ __('Name') }}<span class="text-danger">*</span></label>

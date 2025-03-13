@@ -1,7 +1,8 @@
-<div class="row g-3">
+<div class="">
     <!-- Sección Datos del Cliente -->
     <fieldset class="border p-3 rounded">
-        <legend class="w-auto px-2">Datos del Cliente</legend>
+        <legend class="w-auto px-2  text-light">Datos del Cliente</legend>
+
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -17,12 +18,34 @@
                     {!! $errors->first('Apellido_Cliente', '<div class="invalid-feedback"><strong>:message</strong></div>') !!}
                 </div>
             </div>
-        </div>
 
-        <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="direccion__cliente" class="form-label">Dirección Cliente<span class="text-danger">*</span><span class="text-danger">*</span></label>
+                    <label for="Documento_Cliente" class="form-label">Documento del Cliente</label>
+                    <input type="number" name="Documento_Cliente" class="form-control @error('Documento_Cliente') is-invalid @enderror" value="{{ old('Documento_Cliente', $sale?->Documento_Cliente) }}" id="Documento_Cliente" placeholder="Documento Cliente">
+                    {!! $errors->first('Documento_Cliente', '<div class="invalid-feedback"><strong>:message</strong></div>') !!}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+
+                    <label for="Metodo_pago" class="form-label">Metodo pago<span class="text-danger">*</span></label>
+                    <select style="  background-color: #27293D;" name="Metodo_pago" class=" form-control @error('Metodo_pago') is-invalid @enderror" id="Metodo_pago" required>
+                        <option class="" value="">Metodo pago</option>
+                        <option value="">Contra entrega</option>
+                        <option value="">Online</option>
+                        <option value="">Efectivo</option>
+                </div>
+
+                </select>
+            </div>
+        </div>
+
+        <div class=" p-3  row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="direccion__cliente" class="form-label">Dirección Cliente<span class="text-danger">*</span></label>
                     <input type="text" name="Direccion_Cliente" class="form-control @error('Direccion_Cliente') is-invalid @enderror" value="{{ old('Direccion_Cliente', $sale?->Direccion_Cliente) }}" id="direccion__cliente" placeholder="Dirección Cliente" required>
                     {!! $errors->first('Direccion_Cliente', '<div class="invalid-feedback"><strong>:message</strong></div>') !!}
                 </div>
@@ -34,9 +57,7 @@
                     {!! $errors->first('Ciudad_Cliente', '<div class="invalid-feedback"><strong>:message</strong></div>') !!}
                 </div>
             </div>
-        </div>
 
-        <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="departamento__cliente" class="form-label">Departamento Cliente</label>
@@ -52,23 +73,31 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
 
         <div class="form-group">
             <label for="correo__cliente" class="form-label">Correo Cliente</label>
-            <input type="email" name="Correo_Cliente" class="form-control @error('Correo_Cliente') is-invalid @enderror" value="{{ old('Correo_Cliente', $sale?->Correo_Cliente) }}" id="correo__cliente" placeholder="Correo Cliente">
+            <input type="email" name="Correo_Cliente"
+                class="form-control @error('Correo_Cliente') is-invalid @enderror"
+                value="{{ old('Correo_Cliente', $sale?->Correo_Cliente ?? 'N/A@gmail.com') }}"
+                id="correo__cliente"
+                placeholder="Correo Cliente">
+
             {!! $errors->first('Correo_Cliente', '<div class="invalid-feedback"><strong>:message</strong></div>') !!}
         </div>
+        </div>
+
     </fieldset>
 
 
     <!-- Sección Datos de la Venta -->
-    <fieldset class="border p-3 rounded mt-3">
+    <fieldset class="border p-3 rounded mt-3 text-light">
         <legend class="w-auto px-2">Datos de la Venta</legend>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="user_id" class="form-label">Usuario que realiza la venta<span class="text-danger">*</span></label>
-                    <select name="user_id" class="form-control @error('user_id') is-invalid @enderror" id="user_id" required>
+                    <select style="background-color:#27293D;" name="user_id" class="form-control @error('user_id') is-invalid @enderror" id="user_id" required>
                         <option value="">Seleccione un usuario</option>
                         @foreach($users as $user)
                         <option value="{{ $user->id }}" {{ old('user_id', $sale?->user_id) == $user->id ? 'selected' : '' }}>
@@ -83,7 +112,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="estado" class="form-label">Estado de la Venta<span class="text-danger">*</span></label>
-                    <select name="estado" class="form-control @error('estado') is-invalid @enderror" id="estado" required>
+                    <select style="background-color:#27293D;" name="estado" class="form-control @error('estado') is-invalid @enderror" id="estado" required>
                         <option value="">Seleccione un estado</option>
                         @foreach($salesStatuses as $id => $nombre)
                         <option value="{{ $id }}" {{ old('estado', $sale?->estado) == $id ? 'selected' : '' }}>
@@ -100,9 +129,9 @@
 
 
 
-    <div class="row g-3">
+    <div class="">
         <fieldset class="border p-3 rounded mt-3">
-            <legend class="w-auto px-2">Seleccionar Productos<span class="text-danger">*</span></legend>
+            <legend class="w-auto px-2 text-light">Seleccionar Productos<span class="text-danger">*</span></legend>
 
             <!-- Campo de búsqueda -->
             <div class="mb-3">
@@ -149,7 +178,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                
+
             </div>
 
             <!-- Total General -->

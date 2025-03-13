@@ -5,10 +5,10 @@
 @endsection
 
 @section('content')
-    <section class=" container-fluid">
+    <section class=" container-fluid text-light">
         <div class="row">
             <div class="col-md-12">
-                <div class="card  card-bg-color">
+                <div class="card  ">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
                             <span class="card-title">{{ __('Show') }} Category</span>
@@ -20,7 +20,7 @@
 
                     <div class="card-body ">
                         
-                                <div class="form-group mb-2 mb20">
+                                <div class="form-group mb-2 mb20 ">
                                     <strong>Nombre:</strong>
                                     {{ $category->nombre }}
                                 </div>

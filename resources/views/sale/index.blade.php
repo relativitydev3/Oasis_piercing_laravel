@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <div class="card  color-table">
+                <div class="card  ">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
@@ -33,11 +33,12 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
-                                    <tr class="color-table">
+                                    <tr class="">
                                         <th>No</th>
                                         
 									<th >Nombre Cliente</th>
 									<th >Apellido Cliente</th>
+									<th >Documento</th>
 									<th >Direccion Cliente</th>
 									<th >Ciudad Cliente</th>
 									<th >Departamento Cliente</th>
@@ -51,18 +52,19 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($sales as $sale)
-                                        <tr class="color-table">
+                                        <tr class="">
                                             <td>{{ ++$i }}</td>
                                             
 										<td >{{ $sale->Nombre_Cliente }}</td>
 										<td >{{ $sale->Apellido_Cliente }}</td>
+										<td >{{ $sale->Documento_Cliente }}</td>
 										<td >{{ $sale->Direccion_Cliente }}</td>
 										<td >{{ $sale->Ciudad_Cliente }}</td>
 										<td >{{ $sale->Departamento_Cliente }}</td>
 										<td >{{ $sale->Telefono_Cliente }}</td>
 										<td >{{ $sale->Correo_Cliente }}</td>
-										<td >{{ $sale->user_id }}</td>
-										<td >{{ $sale->estado }}</td>
+										<td >{{ $sale->user->name }}</td>
+										<td >{{ $sale->status->name }}</td>
 
                                             <td>
                                                 <form action="{{ route('sales.destroy', $sale->id) }}" method="POST">

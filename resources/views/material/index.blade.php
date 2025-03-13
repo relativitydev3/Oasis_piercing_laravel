@@ -8,7 +8,7 @@ Materials
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12 ">
-            <div class="card color-table">
+            <div class="card ">
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
 
@@ -29,11 +29,11 @@ Materials
                 </div>
                 @endif
 
-                <div class="card-body  color-table">
+                <div class="card-body  ">
                     <div class="table-responsive ">
                         <table class="table table-striped table-hover">
                             <thead class="thead">
-                                <tr class="color-table">
+                                <tr class="">
                                     <th>No</th>
 
                                     <th>Nombre</th>
@@ -44,7 +44,7 @@ Materials
                             </thead>
                             <tbody>
                                 @foreach ($materials as $material)
-                                <tr class=" color-table">
+                                <tr class=" ">
                                     <td>{{ ++$i }}</td>
 
                                     <td>{{ $material->nombre }}</td>

@@ -1,5 +1,5 @@
 <div class="row padding-1 p-1">
-    <div class="col-md-12">
+    <div class="">
         
         <div class="form-group mb-2 mb20">
             <label for="nombre" class="form-label">{{ __('Nombre') }}</label>

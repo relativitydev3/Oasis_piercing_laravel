@@ -8,7 +8,7 @@
     <section class=" container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card color-table">
+                <div class="card  text-light">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
                             <span class="card-title">{{ __('Show') }} Product Status</span>

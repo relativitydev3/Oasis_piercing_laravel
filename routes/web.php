@@ -23,6 +23,7 @@ Route::resources([
     'products' => ProductController::class,
     'user' => UserController::class,
     'sales' => SaleController::class,
+    'index_sales' => SalesStatusController::class,
     'product-statuses' => ProductStatusController::class,
     'sales-statuses' => SalesStatusController::class,
     'materials' => MaterialController::class,

@@ -52,7 +52,8 @@ Sales
                             </thead>
                             <tbody>
                                 @foreach ($sales as $sale)
-                                @if ($sale->status->id!==4)
+                                @if ($sale->status->id==4)
+
                                 <tr class="">
                                     <td>{{ ++$i }}</td>
 

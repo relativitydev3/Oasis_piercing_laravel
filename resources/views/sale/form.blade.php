@@ -75,16 +75,16 @@
         </div>
         <div class="col-md-6">
 
-        <div class="form-group">
-            <label for="correo__cliente" class="form-label">Correo Cliente</label>
-            <input type="email" name="Correo_Cliente"
-                class="form-control @error('Correo_Cliente') is-invalid @enderror"
-                value="{{ old('Correo_Cliente', $sale?->Correo_Cliente ?? 'N/A@gmail.com') }}"
-                id="correo__cliente"
-                placeholder="Correo Cliente">
+            <div class="form-group">
+                <label for="correo__cliente" class="form-label">Correo Cliente</label>
+                <input type="email" name="Correo_Cliente"
+                    class="form-control @error('Correo_Cliente') is-invalid @enderror"
+                    value="{{ old('Correo_Cliente', $sale?->Correo_Cliente ?? 'N/A@gmail.com') }}"
+                    id="correo__cliente"
+                    placeholder="Correo Cliente">
 
-            {!! $errors->first('Correo_Cliente', '<div class="invalid-feedback"><strong>:message</strong></div>') !!}
-        </div>
+                {!! $errors->first('Correo_Cliente', '<div class="invalid-feedback"><strong>:message</strong></div>') !!}
+            </div>
         </div>
 
     </fieldset>
@@ -143,6 +143,8 @@
                     <thead>
                         <tr class="color-table">
                             <th>Seleccionar</th>
+                            <th>IMG</th>
+
                             <th>Producto</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
@@ -161,6 +163,21 @@
                                 <input style="margin-left: 2em;" type="checkbox" class="form-check-input product-checkbox"
                                     name="productos[{{ $product->id }}][seleccionado]" value="1"
                                     {{ $isSelected ? 'checked' : '' }}>
+                            </td>
+                            
+                            <td>
+                                @if ( !empty($product->imagen) && !$product->imagen==0)
+                                <img src="{{ asset('storage/' . $product->imagen) }}"
+                                    alt="{{ $product->nombre }}"
+                                    class="img-fluid rounded shadow"
+                                    style="max-height: 20vh;"
+                                    data-bs-toggle="modal"
+
+                                    data-bs-target="#imageModal{{ $product->id }}">
+
+                                    @else
+                                    <span class="text-muted">N/A</span>
+                                    @endif
                             </td>
                             <td>{{ $product->nombre }}</td>
                             <td>
@@ -245,7 +262,7 @@
             document.getElementById('searchInput').addEventListener('keyup', function() {
                 var searchValue = this.value.toLowerCase();
                 document.querySelectorAll('#productTable tbody tr').forEach(function(row) {
-                    var productName = row.cells[1].textContent.toLowerCase();
+                    var productName = row.cells[2].textContent.toLowerCase();
                     row.style.display = productName.includes(searchValue) ? '' : 'none';
                 });
             });
@@ -257,3 +274,42 @@
 
 
 </div>
+<div class="">
+    <!-- Modal para cada producto -->
+    @foreach($products as $product)
+        @if (!empty($product->imagen) && $product->imagen != 0)
+            <div class="modal fade" id="imageModal{{ $product->id }}" tabindex="-1" aria-labelledby="imageModalLabel{{ $product->id }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" style="max-width: 80vw;">
+                    <div class="modal-content bg-transparent border-0">
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title text-white" id="imageModalLabel{{ $product->id }}">{{ $product->nombre }}</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img src="{{ asset('storage/' . $product->imagen) }}" 
+                                 alt="{{ $product->nombre }}" 
+                                 class="img-fluid rounded shadow" 
+                                 style="max-height: 80vh;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+    @endforeach
+</div>
+
+<!-- Celda de tabla con la imagen que activa el modal -->
+<td>
+    @if (!empty($product->imagen) && $product->imagen != 0)
+        <img src="{{ asset('storage/' . $product->imagen) }}"
+             alt="{{ $product->nombre }}"
+             class="img-fluid rounded shadow"
+             style="max-height: 20vh;"
+             data-bs-toggle="modal"
+             data-bs-target="#imageModal{{ $product->id }}">
+    @else
+        <span class="text-muted">N/A</span>
+    @endif
+</td>
+
+

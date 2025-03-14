@@ -9,12 +9,16 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash;
+use Barryvdh\DomPDF\Facade\PDF as PDF;
+use App\Models\Sale;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+    
     public function index(Request $request): View
     {
         $users = User::paginate();
@@ -28,7 +32,7 @@ class UserController extends Controller
      */
     public function create(): View
     {
-        
+
         $user = new User();
 
         return view('user.create', compact('user'));
@@ -39,14 +43,14 @@ class UserController extends Controller
      */
     public function store(UserRequest $request): RedirectResponse
     {
-        
+
         $data = $request->validated();
 
         // Encriptar la contraseña si se proporciona
         if (!empty($data['password'])) {
             $data['password'] = Hash::make($data['password']);
         }
-    
+
         User::create($data);
         // User::create($request->validated());
 
@@ -89,7 +93,7 @@ class UserController extends Controller
             // No actualizar la contraseña si está vacía
             unset($data['password']);
         }
-    
+
         // $user->update($request->validated());
         $user->update($data);
 
@@ -104,4 +108,41 @@ class UserController extends Controller
         return Redirect::route('user.index')
             ->with('success', 'User deleted successfully');
     }
+
+    
+    public function printPDF($id)
+    {
+        // Cargar la venta con todas las relaciones necesarias
+        $sale = Sale::with(['details.product', 'user', 'status'])->findOrFail($id);
+        // Verificar si los datos están disponibles
+        if (!$sale) {
+            return redirect()->back()->with('error', 'No se encontró la venta');
+        }
+        
+       
+        
+        // Preparar los datos para la vista
+        $data = [
+            'sale' => $sale,
+            // Añadir cualquier otra variable que necesites
+        ];
+        
+        // Configuración adicional para el PDF
+        $pdf = PDF::loadView('sale.PDF', $data);
+        
+        // Orientación y tamaño del papel
+        $pdf->setPaper('a4', 'portrait');
+        
+        // Opcional: establecer algunas opciones
+        $pdf->setOptions([
+           'isHtml5ParserEnabled' => true,
+           'isRemoteEnabled' => true,
+           'chroot' => public_path(),
+       ]);
+       
+        
+        // Mostrar el PDF en el navegador
+        return $pdf->stream("Factura {$sale->id} para {$sale->Nombre_Cliente}.pdf");
+    }
+
 }

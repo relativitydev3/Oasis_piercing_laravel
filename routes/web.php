@@ -27,6 +27,7 @@ Route::resources([
     'sales-statuses' => SalesStatusController::class,
     'materials' => MaterialController::class,
 ]);
+Route::get('/sale/{sale}/PDF', [UserController::class, 'printPDF'])->name('sale.PDF');
 
 // Auth::routes();
 // Route::resource('categories', CategoryController::class);

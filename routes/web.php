@@ -22,13 +22,14 @@ Route::resources([
     'categories' => CategoryController::class,
     'products' => ProductController::class,
     'user' => UserController::class,
+    // 'index_sales' => SalesStatusController::class,
     'sales' => SaleController::class,
-    'index_sales' => SalesStatusController::class,
     'product-statuses' => ProductStatusController::class,
     'sales-statuses' => SalesStatusController::class,
     'materials' => MaterialController::class,
 ]);
 Route::get('/sale/{sale}/PDF', [UserController::class, 'printPDF'])->name('sale.PDF');
+Route::get('sale/index_sales', [SaleController::class, 'index_sales'])->name('sales.index_sales');
 
 // Auth::routes();
 // Route::resource('categories', CategoryController::class);

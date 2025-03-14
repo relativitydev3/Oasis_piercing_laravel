@@ -25,6 +25,14 @@ class SaleController extends Controller
             ->with('i', ($request->input('page', 1) - 1) * $sales->perPage());
     }
 
+    public function index_sales(Request $request): View
+    {
+        $sales = Sale::paginate();
+
+        return view('sale.index_sales', compact('sales'))
+            ->with('i', ($request->input('page', 1) - 1) * $sales->perPage());
+    }
+
     /**
      * Show the form for creating a new resource.
      */

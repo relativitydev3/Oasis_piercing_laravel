@@ -16,29 +16,7 @@
       <li class=" {{Route::currentRouteName()=='home' ? 'active' : '' }}">
         <a href="{{ route('categories.index') }}">
           <i class="tim-icons icon-chart-pie-36"></i>
-          <p>Dashboard</p>
-        </a>
-      </li>
-
-      <li class=" {{explode('.', Route::currentRouteName())[0]=='index_sales' ? 'active' : ''   }}">
-        <a href="{{ route('index_sales.index') }}">
-          <i class="tim-icons icon-delivery-fast"></i>
-          <p>Lost</p>
-        </a>
-      </li>
-      <li class=" {{explode('.', Route::currentRouteName())[0]=='sales' ? 'active' : ''   }}">
-        <a href="{{ route('sales.index') }}">
-          <i class="tim-icons icon-money-coins"></i>
-          <p>sales</p>
-        </a>
-      </li>
-
-      <li class=" {{explode('.', Route::currentRouteName())[0]=='products' ? 'active' : ''   }}">
-
-        <a href="{{ route('products.index')}}">
-          <i class="tim-icons icon-app"></i>
-          <p>products</p>
-
+          <p>Dashboard </p>
         </a>
       </li>
 
@@ -50,7 +28,6 @@
 
         </a>
       </li>
-
       <li class="{{ in_array(explode('.', Route::currentRouteName())[0], ['sales-statuses', 'product-statuses']) ? 'active' : '' }}">
         <a data-toggle="collapse" href="#estadosSubmenu" aria-expanded="{{ in_array(explode('.', Route::currentRouteName())[0], ['sales-statuses', 'product-statuses']) ? 'true' : 'false' }}">
           <i class="tim-icons icon-world"></i>
@@ -74,6 +51,30 @@
           </ul>
         </div>
       </li>
+      <li class=" {{explode('.', Route::currentRouteName())[0]=='products' ? 'active' : ''   }}">
+        <a href="{{ route('products.index')}}">
+          <i class="tim-icons icon-app"></i>
+          <p>products</p>
+
+        </a>
+      </li>
+      <li class=" {{explode('.', Route::currentRouteName())[1]=='index' ? 'active' : ''   }}">
+        <a href="{{ route('sales.index') }}">
+          <i class="tim-icons icon-money-coins"></i>
+          <p>Lost</p>
+        </a>
+      </li>
+      <li class=" {{explode('.', Route::currentRouteName())[1]=='index_sales' ? 'active' : ''   }}">
+        <a href="{{ route('sales.index_sales') }}">
+          <i class="tim-icons icon-delivery-fast"></i>
+          <p>sales</p>
+        </a>
+      </li>
+
+
+
+
+
 
       <li class=" {{explode('.', Route::currentRouteName())[0]=='materials' ? 'active' : ''   }}">
 

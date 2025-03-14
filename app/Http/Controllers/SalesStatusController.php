@@ -21,13 +21,7 @@ class SalesStatusController extends Controller
         return view('sales-status.index', compact('salesStatuses'))
             ->with('i', ($request->input('page', 1) - 1) * $salesStatuses->perPage());
     }
-    public function index_sales(Request $request): View
-    {
-        $salesStatuses = SalesStatus::paginate();
 
-        return view('sales-index_sales.blade.index', compact('salesStatuses'))
-            ->with('i', ($request->input('page', 1) - 1) * $salesStatuses->perPage());
-    }
     /**
      * Show the form for creating a new resource.
      */

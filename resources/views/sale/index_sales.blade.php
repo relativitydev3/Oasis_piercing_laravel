@@ -69,13 +69,7 @@ Sales
                                     <td>{{ $sale->status->name }}</td>
 
                                     <td>
-                                        <form action="{{ route('sales.destroy', $sale->id) }}" method="POST">
                                             <a class="btn btn-sm btn-primary " href="{{ route('sales.show', $sale->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                            <a class="btn btn-sm btn-success" href="{{ route('sales.edit', $sale->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
-                                        </form>
                                     </td>
                                 </tr>
                                 @endif

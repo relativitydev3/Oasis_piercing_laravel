@@ -4,8 +4,10 @@
       -->
   <div class="sidebar-wrapper">
     <div class="logo">
-      <a href="" style="width: 20%;height: 20%;" class="simple-text logo-mini">
-        <img src="{{(asset( 'storage/'.Auth::user()->imagen))}}" alt="">
+      <a href="" style="width: 15%;height: 20%;" class="simple-text logo-mini">
+        <img  src="{{ Auth::user() && Auth::user()->imagen && file_exists(public_path('storage/' . Auth::user()->imagen)) 
+        ? asset('storage/' . Auth::user()->imagen) 
+        : asset('assets/img/anime3.png') }}" alt="">
       </a>
       <a href="" class="simple-text logo-normal">
         {{ Auth::user()->name  }}

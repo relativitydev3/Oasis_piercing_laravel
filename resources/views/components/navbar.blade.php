@@ -15,7 +15,7 @@
         <span style="margin-left: 0.5em;">Oasis Piercing for Admin</span>
       </a>
     </div>
- 
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-bar navbar-kebab"></span>
       <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -63,7 +63,10 @@
       <li class="dropdown nav-item">
         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
           <div class="photo">
-            <img src="{{(asset( 'storage/'.Auth::user()->imagen))}}">
+              <img src="{{ Auth::user() && Auth::user()->imagen && file_exists(public_path('storage/' . Auth::user()->imagen)) 
+        ? asset('storage/' . Auth::user()->imagen) 
+        : asset('assets/img/anime3.png') }}"
+                alt="User Image">
           </div>
           <b class="caret d-none d-lg-block d-xl-block"></b>
           <p class="d-lg-none">

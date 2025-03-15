@@ -31,7 +31,7 @@ Categories
 
                 <div class="card-body ">
                     <div class="table-responsive ">
-                        <table class="table table-striped table-hover  ">
+                        <table class="table table-striped table-hover  "style="table-layout: fixed; width: 98%; margin-left: auto;">
                             <thead class="thead ">
                                 <tr class="">
                                     <th>No</th>
@@ -79,6 +79,7 @@ Categories
                                     </td>
                                 </tr>
                                 @endforeach
+                                
                             </tbody>
                         </table>
                     </div>

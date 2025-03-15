@@ -31,7 +31,7 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-striped table-hover" >
                                 <thead class="thead">
                                     <tr class="">
                                         <th>No</th>
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $productStatuses->withQueryString()->links() !!}
+                {!! $productStatuses->withQueryString()->links('pagination::bootstrap-5') !!}
             </div>
         </div>
     </div>

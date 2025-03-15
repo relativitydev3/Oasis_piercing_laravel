@@ -11,6 +11,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash;
 use Barryvdh\DomPDF\Facade\PDF as PDF;
 use App\Models\Sale;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -18,7 +19,7 @@ class UserController extends Controller
      * Display a listing of the resource.
      */
 
-    
+
     public function index(Request $request): View
     {
         $users = User::paginate();
@@ -50,7 +51,10 @@ class UserController extends Controller
         if (!empty($data['password'])) {
             $data['password'] = Hash::make($data['password']);
         }
-
+        if ($request->hasFile('imagen')) {
+            $imagePath = $request->file('imagen')->store('Users', 'public');
+            $data['imagen'] = $imagePath;
+        }
         User::create($data);
         // User::create($request->validated());
 
@@ -94,6 +98,33 @@ class UserController extends Controller
             unset($data['password']);
         }
 
+
+
+        // Si el usuario subió una nueva imagen, la procesamos
+        if ($request->hasFile('imagen')) {
+            // Guardamos la imagen en storage y obtenemos la ruta
+            $imagenPath = $request->file('imagen')->store('Users', 'public');
+
+            // Verifica si $data es un objeto o un array
+            if (is_array($data)) {
+                // Si es un array, accede con ['imagen']
+                if (!empty($data['imagen']) && file_exists(public_path('storage/' . $data['imagen']))) {
+                    unlink(public_path('storage/' . $data['imagen']));
+                }
+
+                // Guardamos la nueva ruta en la base de datos
+                $data['imagen'] = $imagenPath;
+            } elseif (is_object($data)) {
+                // Si es un objeto, accede con ->imagen
+                if (!empty($data->imagen) && file_exists(public_path('storage/' . $data->imagen))) {
+                    unlink(public_path('storage/' . $data->imagen));
+                }
+
+                // Guardamos la nueva ruta en la base de datos
+                $data->imagen = $imagenPath;
+            }
+        }
+
         // $user->update($request->validated());
         $user->update($data);
 
@@ -103,13 +134,20 @@ class UserController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        User::find($id)->delete();
+        $imagen = User::find($id);
 
+        if ($imagen->imagen) {
+            Storage::disk('public')->delete($imagen->imagen);
+        }
+
+        $User = User::find($id)->delete();
+        
+       
         return Redirect::route('user.index')
             ->with('success', 'User deleted successfully');
     }
 
-    
+
     public function printPDF($id)
     {
         // Cargar la venta con todas las relaciones necesarias
@@ -118,31 +156,30 @@ class UserController extends Controller
         if (!$sale) {
             return redirect()->back()->with('error', 'No se encontró la venta');
         }
-        
-       
-        
+
+
+
         // Preparar los datos para la vista
         $data = [
             'sale' => $sale,
             // Añadir cualquier otra variable que necesites
         ];
-        
+
         // Configuración adicional para el PDF
         $pdf = PDF::loadView('sale.PDF', $data);
-        
+
         // Orientación y tamaño del papel
         $pdf->setPaper('a4', 'portrait');
-        
+
         // Opcional: establecer algunas opciones
         $pdf->setOptions([
-           'isHtml5ParserEnabled' => true,
-           'isRemoteEnabled' => true,
-           'chroot' => public_path(),
-       ]);
-       
-        
+            'isHtml5ParserEnabled' => true,
+            'isRemoteEnabled' => true,
+            'chroot' => public_path(),
+        ]);
+
+
         // Mostrar el PDF en el navegador
         return $pdf->stream("Factura {$sale->id} para {$sale->Nombre_Cliente}.pdf");
     }
-
 }

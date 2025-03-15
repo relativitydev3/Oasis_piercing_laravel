@@ -26,13 +26,16 @@ class SaleRequest extends FormRequest
 			'Apellido_Cliente' => 'nullable|string',
 			'Direccion_Cliente' => 'required|string',
 			'Ciudad_Cliente' => 'nullable|string',
+            'Departamento_Cliente' => 'nullable|string',
 			'Departamento_Cliente' => 'nullable|string',
+            'Barrio_Cliente' => 'nullable|string',
 			'Telefono_Cliente' => 'nullable|string',
 			'Correo_Cliente' => 'string',
 			'user_id' => 'required',
 			'estado' => 'required|string',
             'productos' => 'required|array',
-            'Documento_Cliente' => 'required|string',
+            'Documento_Cliente' => 'nullable|string',
+            'Metodo_pago' => 'required|string',
         ];
     }
 }

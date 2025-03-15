@@ -27,6 +27,7 @@ class UserRequest extends FormRequest
 			'CC' => 'required|string',
 			'email' => 'required|string',
             'password' => 'required|string',  
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];  
     }
 }

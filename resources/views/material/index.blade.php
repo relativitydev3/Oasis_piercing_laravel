@@ -66,7 +66,7 @@ Materials
                     </div>
                 </div>
             </div>
-            {!! $materials->withQueryString()->links() !!}
+            {!! $materials->withQueryString()->links('pagination::bootstrap-5') !!}
         </div>
     </div>
 </div>

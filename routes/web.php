@@ -8,6 +8,7 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProductStatusController;
 use App\Http\Controllers\SalesStatusController;
 use App\Http\Controllers\MaterialController;
+use App\Models\Sale;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,6 +31,7 @@ Route::resources([
 ]);
 Route::get('/sale/{sale}/PDF', [UserController::class, 'printPDF'])->name('sale.PDF');
 Route::get('sale/index_sales', [SaleController::class, 'index_sales'])->name('sales.index_sales');
+
 
 // Auth::routes();
 // Route::resource('categories', CategoryController::class);

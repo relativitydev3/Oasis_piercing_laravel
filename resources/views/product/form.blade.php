@@ -63,7 +63,7 @@
             {!! $errors->first('descripcion', '<div class="invalid-feedback"><strong>:message</strong></div>') !!}
         </div>
         <label for="">Estado<span class="text-danger">*</span></label>
-        <select name="estado_id" class="form-control" required>
+        <select style="background-color: #27293D;" name="estado_id" class="form-control" required>
             @foreach($statuses as $status)
             <option value="{{ $status->id }}" {{ old('estado_id', $product->estado_id ?? '') == $status->id ? 'selected' : '' }}>
                 {{ $status->name }}
@@ -123,7 +123,7 @@
 
     <div class="form-group mb-3">
         <label for="material_id" class="form-label">Material</label>
-        <select name="material_id" id="material_id" class="form-control @error('material_id') is-invalid @enderror">
+        <select style="background-color: #27293D;" name="material_id" id="material_id" class="form-control @error('material_id') is-invalid @enderror">
             <option value="">Seleccione un material</option>
             @foreach($materials as $material)
             <option value="{{ $material->id }}" {{ old('material_id', $product->material_id ?? '') == $material->id ? 'selected' : '' }}>

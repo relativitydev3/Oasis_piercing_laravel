@@ -35,7 +35,7 @@ class Sale extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['Nombre_Cliente', 'Apellido_Cliente', 'Direccion_Cliente', 'Ciudad_Cliente', 'Departamento_Cliente', 'Telefono_Cliente', 'Correo_Cliente','Documento_Cliente', 'user_id', 'estado'];
+    protected $fillable = ['Nombre_Cliente', 'Apellido_Cliente', 'Direccion_Cliente', 'Ciudad_Cliente', 'Departamento_Cliente', 'Telefono_Cliente', 'Correo_Cliente','Documento_Cliente', 'user_id', 'estado','Metodo_pago','Barrio_Cliente'];
 
  
     public function user()

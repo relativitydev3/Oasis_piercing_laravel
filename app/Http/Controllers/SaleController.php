@@ -17,14 +17,38 @@ class SaleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
+    // public function index()
+    // {
+    //     $sales = Sale::with('user')->paginate(100); // Limitar a 100 registros por página
+    //     return view('sales.index', compact(var_name: 'sales'));
+    // }
+
+    public function index(Request $request)
     {
-        $sales = Sale::paginate();
+        $query = Sale::query()->with('user');
 
-        return view('sale.index', compact('sales'))
-            ->with('i', ($request->input('page', 1) - 1) * $sales->perPage());
+        // Filtrar por Nombre_Cliente
+        if ($nombre = $request->input('nombre')) {
+            $query->where('Nombre_Cliente', 'like', '%' . $nombre . '%');
+        }
+
+        // Filtrar por estado
+        if ($estado = $request->input('estado')) {
+            $query->where('estado', 'like', '%' . $estado . '%');
+        }
+
+        // Filtrar por Método de Pago
+        if ($metodo_pago = $request->input('metodo_pago')) {
+            $query->where('Metodo_pago', 'like', '%' . $metodo_pago . '%');
+        }
+
+        // Paginar resultados
+        $sales = $query->paginate(15);
+
+        return view('sale.index', compact('sales'));
     }
-
+    // Ya no necesitarás el método search si usas esta implementación
+    // pero puedes mantenerlo si prefieres implementar ambos métodos
     public function index_sales(Request $request): View
     {
         $sales = Sale::paginate();
@@ -42,9 +66,9 @@ class SaleController extends Controller
         $users = User::all();
         $products = Product::all();
         $saleDetails = DB::table('sale_details')
-        ->where('sale_id', $sale->id)
-        ->pluck('cantidad', 'product_id')
-        ->toArray();
+            ->where('sale_id', $sale->id)
+            ->pluck('cantidad', 'product_id')
+            ->toArray();
 
         $salesStatuses = DB::table('sales_status')->pluck('name', 'id');
 
@@ -57,40 +81,40 @@ class SaleController extends Controller
     {
         // 1️⃣ Crear la venta en la tabla sales
         $sale = Sale::create($request->validated());
-    
+
         // 2️⃣ Obtener los productos seleccionados desde el formulario
         $productosSeleccionados = $request->input('productos', []);
-    
+
         $totalVenta = 0; // Variable para almacenar el total de la venta
-    
+
         // 3️⃣ Recorrer los productos seleccionados y guardarlos en sale_details
         foreach ($productosSeleccionados as $productId => $producto) {
             // Verificar si el producto tiene una cantidad válida
             if (!isset($producto['cantidad']) || $producto['cantidad'] <= 0) {
                 continue;
             }
-    
+
             // 4️⃣ Buscar el producto en la base de datos para obtener su precio y stock
             $product = Product::find($productId);
-    
+
             if (!$product) {
                 continue; // Si el producto no existe, saltarlo
             }
-    
+
             $cantidad = intval($producto['cantidad']);
             $precio = floatval($product->precio);
             $subTotal = $cantidad * $precio;
             $totalVenta += $subTotal; // Acumulando el total
-    
+
             // 5️⃣ Verificar si hay suficiente stock disponible
             if ($product->stock < $cantidad) {
                 return Redirect::route('sales.index')
                     ->with('error', "Stock insuficiente para el producto {$product->nombre}.");
             }
-    
+
             // 6️⃣ Descontar el stock del producto
             $product->decrement('stock', $cantidad); // Resta la cantidad vendida al stock actual
-    
+
             // 7️⃣ Guardar el detalle en sale_details
             DB::table('sale_details')->insert([
                 'sale_id'   => $sale->id,
@@ -103,14 +127,14 @@ class SaleController extends Controller
                 'updated_at' => now(),
             ]);
         }
-    
+
         // 8️⃣ Actualizar el total de la venta en la tabla sales
         $sale->update(['total' => $totalVenta]);
-    
+
         return Redirect::route('sales.index')
             ->with('success', 'Venta creada correctamente y stock actualizado.');
     }
-    
+
     /**
      * Display the specified resource.
      */
@@ -119,7 +143,7 @@ class SaleController extends Controller
         $sale = Sale::with(['details.product', 'user', 'status'])->findOrFail($id);
         return view('sale.show', compact('sale'));
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -147,42 +171,42 @@ class SaleController extends Controller
     {
         // 1️⃣ Actualizar la venta en la tabla `sales`
         $sale->update($request->validated());
-    
+
         // 2️⃣ Obtener los productos ya existentes en la venta con sus cantidades
         $productosAnteriores = DB::table('sale_details')
             ->where('sale_id', $sale->id)
             ->pluck('cantidad', 'product_id')
             ->toArray(); // Recupera los productos con sus cantidades
-    
+
         // 3️⃣ Obtener los productos seleccionados desde el formulario
         $productosSeleccionados = $request->input('productos', []);
         $totalVenta = 0;
-    
+
         // 4️⃣ Eliminar los detalles antiguos de `sale_details`
         DB::table('sale_details')->where('sale_id', $sale->id)->delete();
-    
+
         // 5️⃣ Recorrer los productos seleccionados y ajustar stock si se cambia la cantidad
         foreach ($productosSeleccionados as $productId => $producto) {
             if (!isset($producto['cantidad']) || $producto['cantidad'] <= 0) {
                 continue;
             }
-    
+
             // Buscar el producto para obtener su precio y stock
             $product = Product::find($productId);
             if (!$product) {
                 continue; // Si no existe, pasarlo
             }
-    
+
             $cantidadNueva = intval($producto['cantidad']);
             $precio = floatval($product->precio);
             $subTotal = $cantidadNueva * $precio;
             $totalVenta += $subTotal;
-    
+
             // Verificar si el producto ya existía antes en la venta
             if (array_key_exists($productId, $productosAnteriores)) {
                 $cantidadAnterior = $productosAnteriores[$productId];
                 $diferencia = $cantidadNueva - $cantidadAnterior;
-    
+
                 if ($diferencia > 0) {
                     // Si la cantidad nueva es mayor, descontar la diferencia
                     if ($product->stock < $diferencia) {
@@ -202,7 +226,7 @@ class SaleController extends Controller
                 }
                 $product->decrement('stock', $cantidadNueva);
             }
-    
+
             // Guardar el detalle en `sale_details`
             DB::table('sale_details')->insert([
                 'sale_id'   => $sale->id,
@@ -215,14 +239,14 @@ class SaleController extends Controller
                 'updated_at' => now(),
             ]);
         }
-    
+
         // 6️⃣ Actualizar el total de la venta en `sales`
         $sale->update(['total' => $totalVenta]);
-    
+
         return Redirect::route('sales.index')
             ->with('success', 'Venta actualizada correctamente.');
     }
-    
+
 
     public function destroy($id): RedirectResponse
     {

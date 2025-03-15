@@ -89,13 +89,12 @@
         .customer-info table td {
             vertical-align: top;
         }
-        
     </style>
-<!-- <style>
+    <!-- <style>
     {!! file_get_contents(public_path('assets/css/black-dashboard copy.css')) !!}
 </style> -->
 
-    
+
 
 
 
@@ -109,42 +108,48 @@
         </div>
         <div class="header">
             <div class="title">Gracias por elegirnos. <br> Prepárate para lucir un piercing único que resalte tu estilo. ¡Nos vemos pronto!</div>
-            <div class="date">Fecha: {{  $sale->created_at }}</div>
+            <div class="date">Fecha: {{ $sale->created_at }}</div>
         </div>
 
         <h3>Información de la Venta</h3>
         <div class="customer-info">
-            <table>
-                <tr>
-                    <td><strong>Nombre Cliente:</strong></td>
-                    <td>{{ $sale->Nombre_Cliente }}</td>
-                    <td><strong>Apellido Cliente:</strong></td>
-                    <td>{{ $sale->Apellido_Cliente }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Dirección Cliente:</strong></td>
-                    <td>{{ $sale->Direccion_Cliente }}</td>
-                    <td><strong>Ciudad Cliente:</strong></td>
-                    <td>{{ $sale->Ciudad_Cliente }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Departamento Cliente:</strong></td>
-                    <td>{{ $sale->Departamento_Cliente }}</td>
-                    <td><strong>Teléfono Cliente:</strong></td>
-                    <td>{{ $sale->Telefono_Cliente }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Correo Cliente:</strong></td>
-                    <td>{{ $sale->Correo_Cliente }}</td>
-                    <td><strong>Usuario:</strong></td>
-                    <td>{{ $sale->user->name }} {{ $sale->user->last_name }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Estado:</strong></td>
-                    <td colspan="3">{{ $sale->status->name }}</td>
-                </tr>
-            </table>
-        </div>
+    <div class="table-responsive">
+        <table class="table table-bordered" style="table-layout: fixed; width: 100%;">
+            <tr>
+                <td style="word-wrap: break-word; white-space: normal;"><strong>Nombre Cliente:</strong></td>
+                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Nombre_Cliente }}</td>
+                <td style="word-wrap: break-word; white-space: normal;"><strong>Apellido Cliente:</strong></td>
+                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Apellido_Cliente }}</td>
+            </tr>
+            <tr>
+                <td style="word-wrap: break-word; white-space: normal;"><strong>Dirección Cliente:</strong></td>
+                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Direccion_Cliente }}</td>
+                <td style="word-wrap: break-word; white-space: normal;"><strong>Ciudad Cliente:</strong></td>
+                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Ciudad_Cliente }}</td>
+            </tr>
+            <tr>
+                <td style="word-wrap: break-word; white-space: normal;"><strong>Departamento Cliente:</strong></td>
+                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Departamento_Cliente }}</td>
+                <td style="word-wrap: break-word; white-space: normal;"><strong>Teléfono Cliente:</strong></td>
+                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Telefono_Cliente }}</td>
+            </tr>
+            <tr>
+                <td style="word-wrap: break-word; white-space: normal;"><strong>Correo Cliente:</strong></td>
+                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Correo_Cliente }}</td>
+                <td style="word-wrap: break-word; white-space: normal;"><strong>Usuario:</strong></td>
+                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->user->name }} {{ $sale->user->last_name }}</td>
+            </tr>
+            <tr>
+                <td style="word-wrap: break-word; white-space: normal;"><strong>Estado:</strong></td>
+                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->status->name }}</td>
+                <td style="word-wrap: break-word; white-space: normal;"><strong>Barrio Cliente:</strong></td>
+                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Barrio_Cliente }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
 
         <h3>Detalles de la Venta</h3>
 
@@ -188,7 +193,7 @@
         @endif
     </div>
 
-    
+
 </body>
 
 </html>

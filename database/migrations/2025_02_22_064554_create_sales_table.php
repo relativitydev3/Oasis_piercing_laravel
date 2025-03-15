@@ -18,9 +18,10 @@ return new class extends Migration
             $table->string('Direccion_Cliente');
             $table->string('Ciudad_Cliente')->nullable();
             $table->string('Departamento_Cliente')->nullable();
+            $table->string('Barrio_Cliente')->nullable();
             $table->string('Telefono_Cliente')->nullable();
             $table->string('Correo_Cliente')->nullable();
-
+            $table->string('Metodo_pago');
             $table->string('Documento_Cliente')->nullable();
             
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Clave foránea

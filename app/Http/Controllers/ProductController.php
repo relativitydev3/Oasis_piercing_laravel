@@ -18,15 +18,44 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function index(Request $request): View
+    // {
+    //     $products = Product::paginate();
+    //     $categories = Category::all(); // Obtener todas las categorías
+
+    //     return view('product.index', compact('products', 'categories'))
+    //         ->with('i', ($request->input('page', 1) - 1) * $products->perPage());
+    // }
     public function index(Request $request): View
     {
-        $products = Product::paginate();
-        $categories = Category::all(); // Obtener todas las categorías
+        $query = Product::query()->with('categories', 'material', 'status');
+
+        // Filtrar por Nombre del Producto
+        if ($nombre = $request->input('nombre')) {
+            $query->where('nombre', 'like', '%' . $nombre . '%');
+        }
+
+        // Filtrar por Estado
+        if ($estado = $request->input('estado')) {
+            $query->whereHas('status', function ($q) use ($estado) {
+                $q->where('name', 'like', '%' . $estado . '%');
+            });
+        }
+
+        // Filtrar por Categoría
+        if ($categoria = $request->input('categoria')) {
+            $query->whereHas('categories', function ($q) use ($categoria) {
+                $q->where('nombre', 'like', '%' . $categoria . '%');
+            });
+        }
+
+        // Paginar resultados
+        $products = $query->paginate(15);
+        $categories = Category::all();
 
         return view('product.index', compact('products', 'categories'))
             ->with('i', ($request->input('page', 1) - 1) * $products->perPage());
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -36,10 +65,10 @@ class ProductController extends Controller
         $categories = Category::all();
         $statuses = SalesStatus::all();
         $materials = Material::all();
-    // Depuración
+        // Depuración
         return view('product.create', compact('product', 'categories', 'statuses', 'materials'));
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -116,7 +145,7 @@ class ProductController extends Controller
         // Actualizar el producto con los datos (manteniendo la imagen si no se subió una nueva)
         $product->update($data);
 
-        
+
         // $product->update($request->validated());
         // Sincronizar categorías seleccionadas
         if ($request->has('categories')) {
@@ -125,7 +154,7 @@ class ProductController extends Controller
             $product->categories()->sync([]); // Si no se selecciona ninguna, se limpia la relación
         }
 
-     
+
 
         return Redirect::route('products.index')
             ->with('success', 'Product updated successfully');
@@ -147,4 +176,7 @@ class ProductController extends Controller
         return Redirect::route('products.index')
             ->with('success', 'Product deleted successfully');
     }
+
+    // ProductController.php
+
 }

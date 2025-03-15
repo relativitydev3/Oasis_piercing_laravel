@@ -19,7 +19,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property $remember_token
  * @property $created_at
  * @property $updated_at
- *
+ * @protected $hidden = ['imagen'];
+
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -34,7 +35,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name', 'last_name', 'CC', 'email', 'password'];
+    protected $fillable = ['name', 'last_name', 'CC', 'email', 'password', 'imagen'];
 
 
 }

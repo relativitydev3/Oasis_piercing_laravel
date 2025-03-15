@@ -5,7 +5,7 @@
   <div class="sidebar-wrapper">
     <div class="logo">
       <a href="" class="simple-text logo-mini">
-        <img src="{{('assets/img/anime3.png')}}" alt="">
+        <img src="{{(asset( 'assets/img/anime3.png'))}}" alt="">
       </a>
       <a href="" class="simple-text logo-normal">
         {{ Auth::user()->name  }}
@@ -58,14 +58,15 @@
 
         </a>
       </li>
-      <li class=" {{explode('.', Route::currentRouteName())[1]=='index' ? 'active' : ''   }}">
-        <a href="{{ route('sales.index') }}">
+
+      <li class="{{ in_array(Route::currentRouteName(), ['sales.index', 'sales.edit','sales.show']) ? 'active' : '' }}">
+      <a href="{{ route('sales.index') }}">
           <i class="tim-icons icon-money-coins"></i>
           <p>Lost</p>
         </a>
       </li>
-      <li class=" {{explode('.', Route::currentRouteName())[1]=='index_sales' ? 'active' : ''   }}">
-        <a href="{{ route('sales.index_sales') }}">
+      <li class="{{ isset(explode('.', Route::currentRouteName())[1]) && explode('.', Route::currentRouteName())[1] == 'index_sales' ? 'active' : '' }}">
+      <a href="{{ route('sales.index_sales') }}">
           <i class="tim-icons icon-delivery-fast"></i>
           <p>sales</p>
         </a>

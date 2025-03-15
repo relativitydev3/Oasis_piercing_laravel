@@ -31,7 +31,7 @@ Sales Statuses
 
                 <div class="card-body ">
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover" >
                             <thead class="thead">
                                 <tr class="">
                                     <th>No</th>
@@ -66,7 +66,7 @@ Sales Statuses
                     </div>
                 </div>
             </div>
-            {!! $salesStatuses->withQueryString()->links() !!}
+            {!! $salesStatuses->withQueryString()->links('pagination::bootstrap-5') !!}
         </div>
     </div>
 </div>

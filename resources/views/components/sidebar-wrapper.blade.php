@@ -4,8 +4,8 @@
       -->
   <div class="sidebar-wrapper">
     <div class="logo">
-      <a href="" class="simple-text logo-mini">
-        <img src="{{(asset( 'assets/img/anime3.png'))}}" alt="">
+      <a href="" style="width: 20%;height: 20%;" class="simple-text logo-mini">
+        <img src="{{(asset( 'storage/'.Auth::user()->imagen))}}" alt="">
       </a>
       <a href="" class="simple-text logo-normal">
         {{ Auth::user()->name  }}
@@ -17,6 +17,7 @@
         <a href="{{ route('categories.index') }}">
           <i class="tim-icons icon-chart-pie-36"></i>
           <p>Dashboard </p>
+          
         </a>
       </li>
 

@@ -28,14 +28,14 @@
         </div>
         <div class="form-group mb-3">
             <label for="password" class="form-label">{{ __('Password') }}<span class="text-danger">*</span></label>
-            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
+            <input value="{{ old('name', $user?->name) }}" type="password" name="password" class="form-control @error('password') is-invalid @enderror"
                 id="password" onkeyup="validatePassword()">
             {!! $errors->first('password', '<div class="invalid-feedback">:message</div>') !!}
             <div id="passwordError" class="invalid-feedback" style="display: none;">Las contraseñas no coinciden</div>
         </div>
         <div class="form-group mb-3">
             <label for="password_confirmation" class="form-label">{{ __('Confirm Password') }}<span class="text-danger">*</span></label>
-            <input type="password" name="password_confirmation" class="form-control"
+            <input value="{{ old('name', $user?->name) }}" type="password" name="password_confirmation" class="form-control"
                 id="password_confirmation" onkeyup="validatePassword()">
             <div id="confirmPasswordError" class="invalid-feedback" style="display: none;">Las contraseñas no coinciden</div>
         </div>

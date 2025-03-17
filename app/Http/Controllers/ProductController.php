@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Category;
 use App\Models\SalesStatus;
 use App\Models\Material;
+use App\Models\ProductStatus;
+
 
 class ProductController extends Controller
 {
@@ -114,7 +116,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $categories = Category::all(); // Obtener todas las categorías
-        $statuses = SalesStatus::all(); // Obtener todos los estados de producto
+        $statuses = ProductStatus::all(); // Obtener todos los estados de producto
         $materials = Material::all();
 
         return view('product.edit', compact('product', 'categories', 'statuses', 'materials'));

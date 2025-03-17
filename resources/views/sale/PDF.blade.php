@@ -11,16 +11,18 @@
             padding: 20px;
             font-size: 14px;
             color: #333;
-            background: #f7f7f7;
+            /* background: #f7f7f7; */
         }
 
         .container {
-            background: #fff;
+            /* background: #fff; */
             padding: 20px;
             border: 1px solid #e1e1e1;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             max-width: 800px;
             margin: 0 auto;
+         
+
         }
 
         .banner img {
@@ -113,41 +115,41 @@
 
         <h3>Información de la Venta</h3>
         <div class="customer-info">
-    <div class="table-responsive">
-        <table class="table table-bordered" style="table-layout: fixed; width: 100%;">
-            <tr>
-                <td style="word-wrap: break-word; white-space: normal;"><strong>Nombre Cliente:</strong></td>
-                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Nombre_Cliente }}</td>
-                <td style="word-wrap: break-word; white-space: normal;"><strong>Apellido Cliente:</strong></td>
-                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Apellido_Cliente }}</td>
-            </tr>
-            <tr>
-                <td style="word-wrap: break-word; white-space: normal;"><strong>Dirección Cliente:</strong></td>
-                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Direccion_Cliente }}</td>
-                <td style="word-wrap: break-word; white-space: normal;"><strong>Ciudad Cliente:</strong></td>
-                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Ciudad_Cliente }}</td>
-            </tr>
-            <tr>
-                <td style="word-wrap: break-word; white-space: normal;"><strong>Departamento Cliente:</strong></td>
-                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Departamento_Cliente }}</td>
-                <td style="word-wrap: break-word; white-space: normal;"><strong>Teléfono Cliente:</strong></td>
-                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Telefono_Cliente }}</td>
-            </tr>
-            <tr>
-                <td style="word-wrap: break-word; white-space: normal;"><strong>Correo Cliente:</strong></td>
-                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Correo_Cliente }}</td>
-                <td style="word-wrap: break-word; white-space: normal;"><strong>Usuario:</strong></td>
-                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->user->name }} {{ $sale->user->last_name }}</td>
-            </tr>
-            <tr>
-                <td style="word-wrap: break-word; white-space: normal;"><strong>Estado:</strong></td>
-                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->status->name }}</td>
-                <td style="word-wrap: break-word; white-space: normal;"><strong>Barrio Cliente:</strong></td>
-                <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Barrio_Cliente }}</td>
-            </tr>
-        </table>
-    </div>
-</div>
+            <div class="table-responsive">
+                <table class="table table-bordered" style="table-layout: fixed; width: 100%;">
+                    <tr>
+                        <td style="word-wrap: break-word; white-space: normal;"><strong>Nombre Cliente:</strong></td>
+                        <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Nombre_Cliente }}</td>
+                        <td style="word-wrap: break-word; white-space: normal;"><strong>Apellido Cliente:</strong></td>
+                        <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Apellido_Cliente }}</td>
+                    </tr>
+                    <tr>
+                        <td style="word-wrap: break-word; white-space: normal;"><strong>Dirección Cliente:</strong></td>
+                        <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Direccion_Cliente }}</td>
+                        <td style="word-wrap: break-word; white-space: normal;"><strong>Ciudad Cliente:</strong></td>
+                        <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Ciudad_Cliente }}</td>
+                    </tr>
+                    <tr>
+                        <td style="word-wrap: break-word; white-space: normal;"><strong>Departamento Cliente:</strong></td>
+                        <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Departamento_Cliente }}</td>
+                        <td style="word-wrap: break-word; white-space: normal;"><strong>Teléfono Cliente:</strong></td>
+                        <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Telefono_Cliente }}</td>
+                    </tr>
+                    <tr>
+                        <td style="word-wrap: break-word; white-space: normal;"><strong>Correo Cliente:</strong></td>
+                        <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Correo_Cliente }}</td>
+                        <td style="word-wrap: break-word; white-space: normal;"><strong>Usuario:</strong></td>
+                        <td style="word-wrap: break-word; white-space: normal;">{{ $sale->user->name }} {{ $sale->user->last_name }}</td>
+                    </tr>
+                    <tr>
+                        <td style="word-wrap: break-word; white-space: normal;"><strong>Estado:</strong></td>
+                        <td style="word-wrap: break-word; white-space: normal;">{{ $sale->status->name }}</td>
+                        <td style="word-wrap: break-word; white-space: normal;"><strong>Barrio Cliente:</strong></td>
+                        <td style="word-wrap: break-word; white-space: normal;">{{ $sale->Barrio_Cliente }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
 
 
 

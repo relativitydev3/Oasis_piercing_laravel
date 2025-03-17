@@ -65,7 +65,7 @@ Sales
 
                             <tbody>
                                 @foreach ($sales as $sale)
-                                @if ($sale->status->id !==4)
+                                @if ($sale->status->id ==4)
                                 <tr>
                                     <td style="overflow-wrap: break-word; white-space: normal;">{{ ++$i }}</td>
                                     <td style="overflow-wrap: break-word; white-space: normal;">{{ $sale->Nombre_Cliente }}</td>

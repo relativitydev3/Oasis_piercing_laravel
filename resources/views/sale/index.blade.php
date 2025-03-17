@@ -12,9 +12,9 @@
           </a>
         </div>
         @if ($message = Session::get('success'))
-          <div class="alert alert-success m-4">
-            <p>{{ $message }}</p>
-          </div>
+        <div class="alert alert-success m-4">
+          <p>{{ $message }}</p>
+        </div>
         @endif
 
         <!-- Filtros con formulario GET -->
@@ -38,7 +38,7 @@
           </form>
 
           <div class="table-responsive">
-            <table class="table table-striped table-hover"style="table-layout: fixed; width: 100%; margin-left: auto;">
+            <table class="table table-striped table-hover" style="table-layout: fixed; width: 100%; margin-left: auto;">
               <thead>
                 <tr>
                   <th>No</th>
@@ -58,35 +58,40 @@
               </thead>
               <tbody>
                 @foreach ($sales as $index => $sale)
-                  <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $sale->Nombre_Cliente }}</td>
-                    <td>{{ $sale->Apellido_Cliente }}</td>
-                    <td>{{ $sale->Documento_Cliente }}</td>
-                    <td>{{ $sale->Direccion_Cliente }}</td>
-                    <td>{{ $sale->Ciudad_Cliente }}</td>
-                    <td>{{ $sale->Departamento_Cliente }}</td>
-                    <td>{{ $sale->Telefono_Cliente }}</td>
-                    <td>{{ $sale->Correo_Cliente }}</td>
-                    <td>{{ $sale->user ? $sale->user->name : 'N/A' }}</td>
-                    <td>{{ $sale->estado }}</td>
-                    <td>{{ $sale->Metodo_pago }}</td>
-                    <td>
-                      <a href="{{ url('/sales/'.$sale->id) }}" class="btn btn-sm btn-primary">
-                        <i class="fa fa-fw fa-eye"></i> Show
-                      </a>
-                      <a href="{{ url('/sales/'.$sale->id.'/edit') }}" class="btn btn-sm btn-success">
-                        <i class="fa fa-fw fa-edit"></i> Edit
-                      </a>
-                      <form action="{{ url('/sales/'.$sale->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro de eliminar?')">
-                          <i class="fa fa-fw fa-trash"></i> Delete
-                        </button>
-                      </form>
-                    </td>
-                  </tr>
+                @if ($sale->estado !=4)
+                <tr style="background-color: #C8E6C9;">
+
+
+                <tr>
+                  <td>{{ $index + 1 }}</td>
+                  <td>{{ $sale->Nombre_Cliente }}</td>
+                  <td>{{ $sale->Apellido_Cliente }}</td>
+                  <td>{{ $sale->Documento_Cliente }}</td>
+                  <td>{{ $sale->Direccion_Cliente }}</td>
+                  <td>{{ $sale->Ciudad_Cliente }}</td>
+                  <td>{{ $sale->Departamento_Cliente }}</td>
+                  <td>{{ $sale->Telefono_Cliente }}</td>
+                  <td>{{ $sale->Correo_Cliente }}</td>
+                  <td>{{ $sale->user ? $sale->user->name : 'N/A' }}</td>
+                  <td>{{ $sale->estado }}</td>
+                  <td>{{ $sale->Metodo_pago }}</td>
+                  <td>
+                    <a href="{{ url('/sales/'.$sale->id) }}" class="btn btn-sm btn-primary">
+                      <i class="fa fa-fw fa-eye"></i> Show
+                    </a>
+                    <a href="{{ url('/sales/'.$sale->id.'/edit') }}" class="btn btn-sm btn-success">
+                      <i class="fa fa-fw fa-edit"></i> Edit
+                    </a>
+                    <form action="{{ url('/sales/'.$sale->id) }}" method="POST" style="display:inline;">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro de eliminar?')">
+                        <i class="fa fa-fw fa-trash"></i> Delete
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+                @endif
                 @endforeach
               </tbody>
             </table>
